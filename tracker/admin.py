@@ -13,4 +13,5 @@ class IssueAdmin(admin.ModelAdmin):
         obj.save()
 
 admin.site.register(IssueCategory)
+admin.site.register(IssueState)
 admin.site.register(Issue, IssueAdmin)

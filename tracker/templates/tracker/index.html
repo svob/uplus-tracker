@@ -1,0 +1,43 @@
+{% extends "tracker/base.html" %}
+
+{% block content %}
+
+    <div id="wrapper">
+        <div id="header">
+            počet otevřených issues: {{ open }}<br>
+            počet uzavřených issues: {{ finished }}<br>
+            nejkratší čaš řešení: {{ min }}<br>
+            nejdelší čaš řešení: {{ max }}<br>
+            průměrný čaš řešení: {{ avg }}<br>
+        </div>
+
+        <div id="main">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 300px;">Issue</th>
+                    <th style="width: 80px;">Stav</th>
+                    <th style="width: 50px;">Zadavatel</th>
+                    <th style="width: 50px;">Řešitel</th>
+                    <th style="width: 80px;">Vytvořeno</th>
+                    <th style="width: 80px;">Dokončeno</th>
+                    <th style="width: 50px;">Doba trvání</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in issues %}
+                <tr>
+                    <td style="text-align: left">{{ issue.description }}</td>
+                    <td>{{ issue.state }}</td>
+                    <td>{{ issue.submitter }}</td>
+                    <td>{{ issue.solver }}</td>
+                    <td>{{ issue.created|date:'d. m Y H:i' }}</td>
+                    <td>{{ issue.finished|date:'d. m Y H:i' | default:'---' }}</td>
+                    <td>{{ issue.duration|default:'---' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock content %}
