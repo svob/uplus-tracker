@@ -33,5 +33,7 @@ class IssueListView(generic.ListView):
 
         context['min'] = min(context['issues'], key=lambda i: i.duration.total_seconds() if i.duration is not None else float('inf')).duration
         context['max'] = max(context['issues'], key=lambda i: i.duration.total_seconds() if i.duration is not None else 0).duration
-        context['avg'] /= context['finished']
+        if context['finished'] > 0:
+            context['avg'] /= context['finished']
+
         return context
