@@ -4,6 +4,13 @@
 
     <div id="wrapper">
         <div id="header">
+            <div id="user-info">
+                Jste přihlášen jako <b>{{ request.user.username }}</b><br>
+                {% if request.user.is_staff %}
+                <a href="{% url 'admin:index' %}">Administrace</a><br>
+                {% endif %}
+                <a href="{% url 'logout' %}">Odhlásit</a>
+            </div>
             počet otevřených issues: {{ open }}<br>
             počet uzavřených issues: {{ finished }}<br>
             nejkratší čaš řešení: {{ min }}<br>
@@ -15,7 +22,8 @@
         <table>
             <thead>
                 <tr>
-                    <th style="width: 300px;">Issue</th>
+                    <th style="width: 220px;">Issue</th>
+                    <th style="width: 80px;">Kategorie</th>
                     <th style="width: 80px;">Stav</th>
                     <th style="width: 50px;">Zadavatel</th>
                     <th style="width: 50px;">Řešitel</th>
@@ -28,6 +36,7 @@
                 {% for issue in issues %}
                 <tr>
                     <td style="text-align: left">{{ issue.description }}</td>
+                    <td>{{ issue.category }}</td>
                     <td>{{ issue.state }}</td>
                     <td>{{ issue.submitter }}</td>
                     <td>{{ issue.solver }}</td>
