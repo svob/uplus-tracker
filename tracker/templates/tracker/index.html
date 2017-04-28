@@ -13,9 +13,9 @@
             </div>
             počet otevřených issues: {{ open }}<br>
             počet uzavřených issues: {{ finished }}<br>
-            nejkratší čaš řešení: {{ min }}<br>
-            nejdelší čaš řešení: {{ max }}<br>
-            průměrný čaš řešení: {{ avg }}<br>
+            nejkratší čaš řešení: {{ min|default:'' }}<br>
+            nejdelší čaš řešení: {{ max|default:'' }}<br>
+            průměrný čaš řešení: {{ avg|default:'' }}<br>
         </div>
 
         <div id="main">
